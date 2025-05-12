@@ -3,12 +3,6 @@
 
 // Desafio de Xadrez - MateCheck
 
-
-int main() {
-    setlocale(LC_ALL, "Portuguese_Brazil");
-
-    #include <stdio.h>
-
 int main() {
     // --------- MOVIMENTO DA TORRE ---------
     // Move 5 casas para a direita, usando FOR
@@ -35,10 +29,5 @@ int main() {
         rainhaMovimentos++;
     } while (rainhaMovimentos < 8);
 
-    return 0;
-}
-
-
-    
     return 0;
 }
