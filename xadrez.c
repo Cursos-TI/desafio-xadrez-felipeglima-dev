@@ -1,66 +1,98 @@
 #include <stdio.h>
 #include<locale.h>
 
-// Desafio de Xadrez - MateCheck -Tema 3 - Desafio Aventureiro
+// Desafio de Xadrez - MateCheck -Tema 3 - Desafio Mestre:
+
+//----------- Aplicando Recursividade para o movimento das peças -----------
+
+//Recursividade para o movimento da Torre: Move 5 casas para a direita
+
+void movimentotorre(int casatorre) {
+
+    if (casatorre > 0) {
+        printf("Movendo Torre para direita. \n", casatorre);
+        movimentotorre(casatorre - 1);
+    }
+}
+
+//Recursivida para o movimento da Rainha: Move 8 casas para a esquerda
+
+void movimentorainha(int casarainha) {
+
+    if (casarainha > 0) {
+        printf("Movendo Rainha para esquerda. \n", casarainha);
+        movimentorainha(casarainha - 1);
+    }
+}
+
+//Recursividade para o movimento do Bispo com estrutura aninhada FOR: Move 5 casas na diagonal (Cima + Direita)
+
+void movimentobispo (int casabispo) {
+
+    if (casabispo > 0) {
+        if (casabispo > 0) {
+            printf("Movendo Bispo para cima. \n");
+        }
+        movimentobispo(casabispo - 1);
+        printf("Movendo Bispo para direita. \n");
+    }
+}
 
 int main() {
     setlocale(LC_ALL, "Portuguese_Brazil");
 
-    // --------- MOVIMENTO DA TORRE ---------
-    // Move 5 casas para a direita, usando FOR
+// Menu Principal do jogo de Xadrez:
 
-    printf("Movimento da Torre (5 casas para a Direita):\n");
-    for (int torremovimento = 1; torremovimento <= 5; torremovimento++) {
-        printf("Movendo Torre para Direita.\n");
-    }
+    int option;
+    int bispo = 5;
+    int torre = 5;
+    int rainha = 8;
+    int casacavalo1;
+    int casacavalo2;
 
-    // --------- MOVIMENTO DO BISPO ---------
-    // Move 5 casas na diagonal (Cima + Direita), usando WHILE
+    do{
+        printf("\n---- Menu Principal: Xadrez ----\n");
+        printf("Escolha uma das opções abaixo: \n");
+        printf("1. Torre\n");
+        printf("2. Bispo\n");
+        printf("3. Rainha\n");
+        printf("4. Cavalo\n");
+        scanf("%d", &option);
 
-    printf("\nMovimento do Bispo (5 casas na Diagonal para Cima Direita):\n");
-    int bispomovimento = 0;
-    while (bispomovimento < 5) {
-        printf("Movendo Bispo para cima/direita.\n");
-        bispomovimento++;
-    }
+//----------- Variáveis e Valores para Recursividade das peças -----------
 
-    // --------- MOVIMENTO DA RAINHA ---------
-    // Move 8 casas para a esquerda, usando DO-WHILE
-
-    printf("\nMovimento da Rainha (8 casas para a Esquerda):\n");
-    int rainhamovimento = 0;
-    do {
-        printf("Movendo Rainha para Esquerda.\n");
-        rainhamovimento++;
-    } while (rainhamovimento < 8);
-
-
-    // --------- MOVIMENTO DO CAVALO ---------
-    // Move 2 casas para baixo, 1 casa para esquerda (Movimento em L) usando LOOP ANINHADO FOR:
-
-    printf("\nMovimento do Cavalo (2 casas para baixo, 1 casa para esquerda):\n");
-    for(int cavalomovimento1 = 1; cavalomovimento1 <= 1; cavalomovimento1++){
-        for(int cavalomovimento2 = 1; cavalomovimento2 <= 2; cavalomovimento2++){
-            printf("Movendo Cavalo para baixo. \n");
-        }
-        printf("Movendo Cavalo para esquerda.\n");
-        printf("----------------------------\n");
-   }
-
-    // Move 2 casas para baixo, 1 casa para esquerda (Movimento em L) usando LOOP ANINHADO DO-WHILE:
+            switch(option){
+                case 1:
+                //Resultados para Recursividade: Bispo, Rainha, Torre: 
+                    printf("\n---------------------\n");
+                    printf("Você escolheu Torre. Computando...: \n");
+                    movimentotorre(torre);
+                    printf("\n---------------------\n"); 
+                break;
+                case 2:
+                    printf("\n---------------------\n");
+                    printf("\nVocê escolheu Bispo. Computando...: \n");
+                    movimentobispo(bispo);
+                    printf("\n---------------------\n");
+                break;
+                case 3:
+                    printf("\n---------------------\n"); 
+                    printf("\nVocê escolheu Rainha. Computando...: \n");
+                    movimentorainha(rainha);
+                    printf("\n---------------------\n"); 
+                break;
+                case 4: 
+                //Aplicando estruturas aninhadas para o movimento do Cavalo em L.
+                    printf("\nVocê escolheu Cavalo. Computando...: \n");
+                        for ( casacavalo2 = 0; casacavalo2 < 1 ; casacavalo2++){
+                            for (casacavalo1 = 0; casacavalo1 < 2; casacavalo1++)
+                                printf("Movendo Cavalo para cima... \n");
+                            }
+                        printf("Movendo Cavalo para direita... \n");
+                break;
+                }
+            } while (option != 4 && option != 3 && option != 2 && option != 1);  
     
-    printf("\nMovimento do Cavalo (2 casas para baixo, 1 casa para esquerda):\n");
-    int cavalomovimento1 = 1;
-    do {
-        int cavalomovimento2 = 1;
-            do {
-                printf("Movendo Cavalo para baixo.\n");
-                cavalomovimento2++;
-                    } while (cavalomovimento2 <= 2);
-                        printf("Movendo Cavalo para esquerda.\n");
-                        cavalomovimento1++;
-        } while (cavalomovimento1 <= 1);
-
-return 0;
+    return 0;
 }
 
